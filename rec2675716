@@ -1,0 +1,27 @@
+Mallard_assignment2:
+total 28
+drwxr-xr-x. 2 myid  110 Feb 27 11:34 bin
+-rw-r--r--. 1 myid   39 Feb 24 09:29 double-inputa.txt
+-rw-r--r--. 1 myid   17 Feb 24 09:30 int-inputa.txt
+-rw-r--r--. 1 myid 3194 Feb 27 21:16 Readme.txt
+-rw-r--r--. 1 myid 3194 Feb 27 21:14 Readme.txt~
+-rw-r--r--. 1 myid 1090 Feb 27 21:38 rec2445110
+-rw-r--r--. 1 myid    0 Mar 15 18:38 rec2675716
+drwxr-xr-x. 2 myid 4096 Feb 27 21:25 src
+-rw-r--r--. 1 myid   29 Feb 24 09:29 string-inputa.txt
+
+Mallard_assignment2/bin:
+total 16
+-rw-r--r--. 1 myid 3263 Feb 27 21:26 DoublyLinkedList.class
+-rw-r--r--. 1 myid 4809 Feb 27 21:26 DoublyLinkedListDriver.class
+-rw-r--r--. 1 myid  394 Feb 27 21:26 NodeType.class
+
+Mallard_assignment2/src:
+total 40
+-rw-r--r--. 1 myid 7591 Feb 27 21:25 DoublyLinkedListDriver.java
+-rw-r--r--. 1 myid 7589 Feb 27 20:33 DoublyLinkedListDriver.java~
+-rw-r--r--. 1 myid 8010 Feb 27 20:08 DoublyLinkedList.java
+-rw-r--r--. 1 myid 5395 Feb 27 14:34 DoublyLinkedList.java~
+-rw-r--r--. 1 myid  380 Feb 27 20:10 NodeType.java
+-rw-r--r--. 1 myid  139 Feb 24 09:14 NodeType.java~
+/home/myid/mkm41706/CSCI2720/Mallard_assignment2:/home/myid/csci-2720

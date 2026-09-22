@@ -1,0 +1,244 @@
+public class DoublyLinkedList<T extends Comparable<T>> {
+
+    private NodeType<T> head;
+    public DoublyLinkedList(){
+	head = null;
+    } //DoublyLinkedList
+
+    /**
+     * Pre-Condition: the list exists and item is initialized
+     * Post-Condition: the item is inserted into the list,
+     * maintaining sorted order
+     */
+    public void insertItem(T item) {
+	NodeType<T> node = new NodeType<T>();
+	node.info = item;
+
+	if(head == null) {
+	    head = node;
+	    return;
+	} //if
+
+	if (item.compareTo(head.info) < 0) {
+	    node.next = head;
+	    head.back = node;
+	    head = node;
+	    return;
+	} //if
+	
+	NodeType<T> predloc = head;
+	NodeType<T> location = head.next;
+	while(location != null && item.compareTo(location.info) > 0) {
+	    predloc = location;
+	    location = location.next;
+	} //while
+
+	if (location != null && item.compareTo(location.info) == 0) {
+	    System.out.println("Item already exists");
+	    return;
+	} //if
+	
+	node.next = location;
+	node.back = predloc;
+	predloc.next = node;
+
+	if (location != null) {
+	    location.back = node;
+	} //if
+    } //InsertItem
+
+    /**
+     * Pre-Condition: the list exists and the item is initialized.
+     * Post-Condition: the node that contains the item is removed
+     * from the list. If the item is not present in the list,
+     * print the message that is shown in the example output.
+     */
+    public void deleteItem(T item) {
+	if(head == null) {
+	    System.out.println("You cannot delete from an empty list");
+	    return;
+	} else if(item.compareTo(head.info) == 0) {
+	    if(head.next != null) {
+		head = head.next;
+		head.back = null;
+	    } else {
+		head = null;
+	    } //else
+	    return;
+        } //else-if
+
+    NodeType<T> location = head.next;
+    NodeType<T> predloc = head;
+
+    while(location != null) {
+	if(item.compareTo(location.info) == 0) {
+	    predloc.next = location.next;
+	 
+	    if (location.next != null) {
+                location.next.back = predloc;
+	    } //if
+	    return;
+	} //if
+	predloc = location;
+	location = location.next;
+    } //while
+
+    System.out.println("The item is not present in the list");
+    } //DeleteItem
+
+    /**
+     * Pre-Condition: the list exists.
+     * Post-Condition: returns the length of the list
+     */
+    public int length() {
+	int length = 0;
+	NodeType<T> location = head;
+	while(location != null){
+	    location = location.next;
+	    length++;
+	} //while
+
+	return length;
+    } //length
+
+    /**
+     * Pre-Condition: the list exists.
+     * Post-Condition: items in the list are printed to
+     * standard output.
+     */
+    public void print() {
+	if(head == null) {
+	    System.out.println("The list is empty");
+	    return;
+	} //if
+
+	NodeType<T> location = head;
+	while(location != null) {
+	    System.out.print(location.info + " ");
+	    location = location.next;
+	} //while
+	System.out.println();
+    } //print
+
+    /**
+     * Pre-Condition: the list exists.
+     * Post-Condition: items in the list are printed to standard
+     * output in the reverse order.
+     * Note: You need to go to the end of the list and use the
+     * “back” of the node to print the list backwards.
+     */
+    public void printReverse() {
+	if(head == null) {
+	    System.out.println("The list is empty");
+	    return;
+	} //if
+	
+	NodeType<T> location = head;
+	while(location.next != null) {
+	    location = location.next;
+	} //while
+
+	System.out.print("The reverse list: ");
+	while(location != null) {
+	    System.out.print(location.info + " ");
+	    location = location.back;
+	} //while
+	System.out.println();
+    } //prinReverse
+
+    /**
+     *
+     */
+    public void deleteSubsection(T lower, T upper) {
+	
+	if(head == null) {
+	    return;
+	} //if
+
+        NodeType<T> location = head;
+
+	while(location != null && lower.compareTo(location.info) > 0) {
+	    location = location.next;
+	} //while
+
+	if (location == null) {
+	    return;
+	} //if
+	
+	NodeType<T> start = location;
+	while(location != null && upper.compareTo(location.info) >= 0) {
+	    location = location.next;
+	} //while
+
+	NodeType<T> endNext = location;
+	NodeType<T> startPrev = start.back;
+	
+	if(startPrev != null) {
+	    startPrev.next = endNext;
+	} else {
+	    head = endNext;
+	} //if-else
+
+	if (endNext != null) {
+	    endNext.back = startPrev;
+	}
+    } //deleteSubsection
+
+    public void reverseList() {
+	if (head == null) {
+	    return;
+	} //if
+
+	NodeType<T> location = head;
+	NodeType<T> prev = null;
+	NodeType<T> next = null;
+	while(location != null) {
+	    next = location.next;
+	    location.next = prev;
+	    location.back = next;
+	    prev = location;
+	    location = next;
+	} //while
+	head = prev;
+    } //reverseList
+
+    public void swapAlternate() {
+	if (head == null || head.next == null) {
+	    return;
+	}
+
+	NodeType<T> prevTail = null;
+	NodeType<T> first = head;
+	NodeType<T> second = head.next;
+
+	head = second;
+
+	while(first != null && second != null) {
+	    NodeType<T> nextPair = second.next;
+
+	    second.next = first;
+	    first.back = second;
+
+	    if (prevTail != null) {
+		prevTail.next = second;
+		second.back = prevTail;
+	    } else {
+		second.back = null;
+	    } //if-else
+
+	    if (nextPair != null) {
+		first.next = nextPair;
+		nextPair.back = first;
+	    } else {
+		first.next = null;
+	    } //else-if
+	    
+	    prevTail = first;
+
+	    first = nextPair;
+	    if (first != null) {
+		second = first.next;
+	    } //if
+	} //while
+    } //swapAlternate
+} //DoublyLinkedList
